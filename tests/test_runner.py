@@ -1,5 +1,6 @@
 from datetime import date
 
+from consts import CertificateStatus
 from entity import ParsedData
 from runner import Runner
 
@@ -21,6 +22,7 @@ def test_runner_pf():
     assert worker.certificate.parsed_data.publication_date == date(2023, 5, 27)
     assert worker.certificate.parsed_data.expiration_date == date(2023, 8, 24)
     assert worker.certificate.parsed_data.protocol == '2023.000003446271-04'
+    assert worker.certificate.parsed_data.certificate_status is CertificateStatus.CONSTA
 
 
 def test_runner_pj():
@@ -40,3 +42,4 @@ def test_runner_pj():
     assert worker.certificate.parsed_data.publication_date == date(2023, 5, 27)
     assert worker.certificate.parsed_data.expiration_date == date(2023, 8, 24)
     assert worker.certificate.parsed_data.protocol == '2023.000003446271-04'
+    assert worker.certificate.parsed_data.certificate_status is CertificateStatus.CONSTA
