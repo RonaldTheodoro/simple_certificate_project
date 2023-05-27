@@ -36,8 +36,12 @@ class WorkerSefazPE(BaseWorker):
         fields = self.__parse_mandatory_fields(pdf_text)
         certificate_status = self.__parse_certificate_status(pdf_text)
 
-        self.certificate.parsed_data.publication_date = fields["publication_date"]
-        self.certificate.parsed_data.expiration_date = fields["expiration_date"]
+        self.certificate.parsed_data.publication_date = fields[
+            "publication_date"
+        ]
+        self.certificate.parsed_data.expiration_date = fields[
+            "expiration_date"
+        ]
         self.certificate.parsed_data.protocol = fields["protocol"]
         self.certificate.parsed_data.certificate_status = certificate_status
 

@@ -26,7 +26,14 @@ def test_runner_pf():
         is CertificateStatus.CONSTA
     )
     worker.save_certificate()
-    assert worker.certificate.parsed_data.report == {}
+    assert worker.certificate.report == {
+        "worker": 1,
+        "cpf": "11111111111",
+        "certificate_status": 1,
+        "expiration_date": '24/08/2023',
+        "publication_date": '27/05/2023',
+        "protocol": "2023.000003446271-04",
+    }
 
 
 def test_runner_pj():
@@ -49,3 +56,11 @@ def test_runner_pj():
         worker.certificate.parsed_data.certificate_status
         is CertificateStatus.NAO_CONSTA
     )
+    assert worker.certificate.report == {
+        "worker": 1,
+        "cnpj": "00000000000000",
+        "certificate_status": 2,
+        "expiration_date": '24/08/2023',
+        "publication_date": '27/05/2023',
+        "protocol": "2023.000003446272-95",
+    }

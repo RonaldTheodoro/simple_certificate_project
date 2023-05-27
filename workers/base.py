@@ -14,4 +14,4 @@ class BaseWorker(ABC):
         pass
 
     def save_certificate(self):
-        pass
+        return self.certificate.report
