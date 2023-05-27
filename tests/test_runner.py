@@ -1,7 +1,7 @@
 from datetime import date
 
 from consts import CertificateStatus
-from entity import ParsedData
+from entity.parsed_data import ParsedData
 from runner import Runner
 
 
@@ -15,7 +15,6 @@ def test_runner_pf():
     worker.download_certificate_document()
     assert worker.certificate.pdf is not None
     assert isinstance(worker.certificate.pdf, bytes)
-    assert worker.certificate.parsed_data is None
     worker.parse_certificate_data()
     assert worker.certificate.parsed_data is not None
     assert isinstance(worker.certificate.parsed_data, ParsedData)
@@ -26,6 +25,8 @@ def test_runner_pf():
         worker.certificate.parsed_data.certificate_status
         is CertificateStatus.CONSTA
     )
+    worker.save_certificate()
+    assert worker.certificate.parsed_data.report == {}
 
 
 def test_runner_pj():
@@ -38,7 +39,6 @@ def test_runner_pj():
     worker.download_certificate_document()
     assert worker.certificate.pdf is not None
     assert isinstance(worker.certificate.pdf, bytes)
-    assert worker.certificate.parsed_data is None
     worker.parse_certificate_data()
     assert worker.certificate.parsed_data is not None
     assert isinstance(worker.certificate.parsed_data, ParsedData)

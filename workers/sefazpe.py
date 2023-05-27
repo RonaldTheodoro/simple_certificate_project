@@ -4,7 +4,6 @@ from commons.convert_pdf_to_text import convert_pdf_to_text
 from commons.load_resource import load_resource
 from commons.parse_regex_or_raise_error import parse_regex_or_raise_error
 from consts import CertificateStatus
-from entity import ParsedData
 from workers.base import BaseWorker
 from workers.register import register
 
@@ -35,15 +34,12 @@ class WorkerSefazPE(BaseWorker):
         pdf_text = convert_pdf_to_text(self.certificate.pdf)
 
         fields = self.__parse_mandatory_fields(pdf_text)
-
         certificate_status = self.__parse_certificate_status(pdf_text)
 
-        parsed_data = ParsedData()
-        parsed_data.publication_date = fields["publication_date"]
-        parsed_data.expiration_date = fields["expiration_date"]
-        parsed_data.protocol = fields["protocol"]
-        parsed_data.certificate_status = certificate_status
-        self.certificate.parsed_data = parsed_data
+        self.certificate.parsed_data.publication_date = fields["publication_date"]
+        self.certificate.parsed_data.expiration_date = fields["expiration_date"]
+        self.certificate.parsed_data.protocol = fields["protocol"]
+        self.certificate.parsed_data.certificate_status = certificate_status
 
     def __parse_mandatory_fields(self, pdf_text):
         fields = {}

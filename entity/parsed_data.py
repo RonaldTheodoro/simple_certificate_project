@@ -5,7 +5,8 @@ from consts import CertificateStatus
 
 
 class ParsedData:
-    def __init__(self):
+    def __init__(self, certificate):
+        self.__certificate = certificate
         self.__publication_date = None
         self.__expiration_date = None
         self.__protocol = None
@@ -46,6 +47,10 @@ class ParsedData:
     @certificate_status.setter
     def certificate_status(self, value):
         self.__certificate_status = value
+
+    @property
+    def report(self):
+        return {}
 
     def __convert_str_to_date(self, value):
         match = re.match(

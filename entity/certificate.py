@@ -1,8 +1,11 @@
+from entity.parsed_data import ParsedData
+
+
 class Certificate:
     def __init__(self, payload):
         self.__payload = payload
         self.__pdf = None
-        self.__parsed_data = None
+        self.__parsed_data = ParsedData(self)
 
     @property
     def document(self):
