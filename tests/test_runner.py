@@ -1,5 +1,7 @@
-from runner import Runner
+from datetime import date
+
 from entity import ParsedData
+from runner import Runner
 
 
 def test_runner_pf():
@@ -16,6 +18,9 @@ def test_runner_pf():
     worker.parse_certificate_data()
     assert worker.certificate.parsed_data is not None
     assert isinstance(worker.certificate.parsed_data, ParsedData)
+    assert worker.certificate.parsed_data.publication_date == date(2023, 5, 27)
+    assert worker.certificate.parsed_data.expiration_date == date(2023, 8, 24)
+    assert worker.certificate.parsed_data.protocol == '2023.000003446271-04'
 
 
 def test_runner_pj():
@@ -32,3 +37,6 @@ def test_runner_pj():
     worker.parse_certificate_data()
     assert worker.certificate.parsed_data is not None
     assert isinstance(worker.certificate.parsed_data, ParsedData)
+    assert worker.certificate.parsed_data.publication_date == date(2023, 5, 27)
+    assert worker.certificate.parsed_data.expiration_date == date(2023, 8, 24)
+    assert worker.certificate.parsed_data.protocol == '2023.000003446271-04'
