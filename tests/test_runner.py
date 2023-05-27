@@ -7,6 +7,10 @@ def test_runner_pf():
     worker = runner({"cpf": document, "person": 1, "worker": 1})
     assert worker.certificate.document == document
     assert worker.certificate.worker == 1
+    assert worker.certificate.pdf is None
+    worker.download_certificate_document()
+    assert worker.certificate.pdf is not None
+    assert isinstance(worker.certificate.pdf, bytes)
 
 
 def test_runner_pj():
@@ -15,3 +19,7 @@ def test_runner_pj():
     worker = runner({"cnpj": document, "person": 2, "worker": 1})
     assert worker.certificate.document == document
     assert worker.certificate.worker == 1
+    assert worker.certificate.pdf is None
+    worker.download_certificate_document()
+    assert worker.certificate.pdf is not None
+    assert isinstance(worker.certificate.pdf, bytes)
