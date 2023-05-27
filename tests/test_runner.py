@@ -47,5 +47,5 @@ def test_runner_pj():
     assert worker.certificate.parsed_data.protocol == "2023.000003446272-95"
     assert (
         worker.certificate.parsed_data.certificate_status
-        is CertificateStatus.CONSTA
+        is CertificateStatus.NAO_CONSTA
     )
