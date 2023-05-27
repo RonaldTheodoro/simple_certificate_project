@@ -1,5 +1,5 @@
 from runner import Runner
-from workers.base import BaseWorker
+
 
 def test_runner_pf():
     document = "11111111111"
