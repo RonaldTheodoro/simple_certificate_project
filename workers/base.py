@@ -12,3 +12,6 @@ class BaseWorker(ABC):
     @abstractmethod
     def parse_certificate_data(self):
         pass
+
+    def save_certificate(self):
+        pass
