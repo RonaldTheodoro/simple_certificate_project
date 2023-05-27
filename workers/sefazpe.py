@@ -10,14 +10,19 @@ from consts import CertificateStatus
 @register(1)
 class WorkerSefazPE(BaseWorker):
     FIELDS_REGEX = {
-        "publication_date": r"DADOS DO REQUERENTE(?P<publication_date>\d{2}/\d{2}/\d{4})",
+        "publication_date": r"(DADOS DO REQUERENTE|CERTIDÃO NEGATIVA DE DÉBITOS FISCAIS\n)(?P<publication_date>\d{2}/\d{2}/\d{4})",
         "expiration_date": r"sefaz\.pe\.gov\.br\.(?P<expiration_date>\d{2}/\d{2}/\d{4})",
-        "protocol": r"(?P<protocol>\d{4}\.\d{12}-\d{2}) Número:",
+        "protocol": r"(?P<protocol>\d{4}\.\d{12}-\d{2})",
     }
 
     def download_certificate_document(self):
+        if self.certificate.document == "11111111111":
+            pdf_name = "sefazpe_cnpj"
+        elif self.certificate.document == "00000000000000":
+            pdf_name = "sefazpe_cpf"
+
         self.certificate.pdf = load_resource(
-            "certificates/sefazpe/sefazpe_cnpj.pdf", mode="rb"
+            f"certificates/sefazpe/{pdf_name}.pdf", mode="rb"
         )
 
     def parse_certificate_data(self):
