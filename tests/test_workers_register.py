@@ -2,7 +2,6 @@ import pytest
 from workers.register import WorkerRegister
 
 
-
 def test_worker_register():
     register = WorkerRegister()
 
@@ -23,7 +22,5 @@ def test_worker_register():
     assert register.get_worker(2) is Worker02
     assert register.get_worker(3) is Worker03
 
-    with pytest.raises(Exception, match='Worker 4 not found'):
+    with pytest.raises(Exception, match="Worker 4 not found"):
         register.get_worker(4)
-
-
