@@ -1,6 +1,7 @@
 class Certificate:
     def __init__(self, payload):
         self.__payload = payload
+        self.__pdf = None
 
     @property
     def document(self):
@@ -29,3 +30,11 @@ class Certificate:
     @property
     def worker(self):
         return self.__payload["worker"]
+
+    @property
+    def pdf(self):
+        return self.__pdf
+
+    @pdf.setter
+    def pdf(self, value):
+        self.__pdf = value
