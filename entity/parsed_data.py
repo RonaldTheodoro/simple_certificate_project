@@ -3,6 +3,7 @@ from datetime import date
 
 from consts import CertificateStatus
 
+
 class ParsedData:
     def __init__(self):
         self.__publication_date = None
@@ -47,13 +48,8 @@ class ParsedData:
         self.__certificate_status = value
 
     def __convert_str_to_date(self, value):
-        match = re.match(
-            r'(?P<day>\d{1,2})/(?P<month>\d{1,2})/(?P<year>\d{4})',
-            value
-        )
+        match = re.match(r"(?P<day>\d{1,2})/(?P<month>\d{1,2})/(?P<year>\d{4})", value)
         value = date(
-            int(match.group('year')),
-            int(match.group('month')),
-            int(match.group('day'))
+            int(match.group("year")), int(match.group("month")), int(match.group("day"))
         )
         return value
