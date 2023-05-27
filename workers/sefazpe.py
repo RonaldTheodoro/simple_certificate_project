@@ -3,6 +3,7 @@ from workers.base import BaseWorker
 from commons.load_resource import load_resource
 from entity import ParsedData
 
+
 @register(1)
 class WorkerSefazPE(BaseWorker):
     def download_certificate_document(self):

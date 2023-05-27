@@ -1,6 +1,7 @@
 from runner import Runner
 from entity import ParsedData
 
+
 def test_runner_pf():
     document = "11111111111"
     runner = Runner()
