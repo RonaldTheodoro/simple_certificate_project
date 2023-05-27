@@ -7,7 +7,7 @@ name = "pypi"
 python-decouple = "*"
 requests = "*"
 click = "*"
-pypdf2 = "*"
+pypdf = "*"
 
 [dev-packages]
 pytest = "*"

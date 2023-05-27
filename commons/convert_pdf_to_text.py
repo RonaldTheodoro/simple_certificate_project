@@ -1,6 +1,6 @@
 from io import BytesIO
 
-from PyPDF2 import PdfReader
+from pypdf import PdfReader
 
 
 def convert_pdf_to_text(pdf):
